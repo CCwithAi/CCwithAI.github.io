@@ -1,0 +1,35 @@
+backend:
+  name: github
+  repo: CCwithAi/CCwithAI.github.io
+  branch: main
+  base_url: https://api.netlify.com
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Featured Image", name: "featuredImage", widget: "image"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Description", name: "description", widget: "text"}
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "index.html"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Hero Title", name: "heroTitle", widget: "string"}
+          - {label: "Hero Message", name: "heroMessage", widget: "text"}
+          - {label: "Featured Image", name: "featuredImage", widget: "image"}
+          - {label: "Body", name: "body", widget: "markdown"}
