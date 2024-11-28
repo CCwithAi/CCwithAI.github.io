@@ -2,7 +2,11 @@ backend:
   name: github
   repo: CCwithAi/CCwithAI.github.io
   branch: main
+  auth_type: github
   base_url: https://api.netlify.com
+  auth_endpoint: auth
+  client_id: Ov23liPHNlQHDGbNwvFa
+  client_secret: d7291e3403ad17cea4a836d6af16c20384a089d9
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
