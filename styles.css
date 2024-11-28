@@ -1,0 +1,12 @@
+[data-prss-footer] .powered-by,
+[data-prss-footer] a[href*="prss"],
+.powered-by,
+a[href*="prss"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    pointer-events: none !important;
+}
