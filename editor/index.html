@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Editor</title>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <style>
+        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
+        #editorjs { max-width: 800px; margin: 0 auto; }
+        .save-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .save-button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div id="editorjs"></div>
+    <button class="save-button" onclick="saveContent()">Save Content</button>
+
+    <script>
+        const editor = new EditorJS({
+            holder: 'editorjs',
+            tools: {
+                header: {
+                    class: Header,
+                    inlineToolbar: ['link']
+                },
+                list: {
+                    class: List,
+                    inlineToolbar: true
+                },
+                image: {
+                    class: SimpleImage,
+                    inlineToolbar: true
+                }
+            }
+        });
+
+        function saveContent() {
+            editor.save().then((outputData) => {
+                const content = JSON.stringify(outputData);
+                // Here you would typically send this to a server
+                console.log('Content saved:', content);
+                alert('Content saved! (Check console for output)');
+            });
+        }
+    </script>
+</body>
+</html>
