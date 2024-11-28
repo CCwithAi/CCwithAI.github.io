@@ -5,10 +5,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
     <style>
         body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
-        #editorjs { max-width: 800px; margin: 0 auto; }
+        #editorjs { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
         .save-button {
             position: fixed;
             bottom: 20px;
@@ -38,21 +43,33 @@
                 list: {
                     class: List,
                     inlineToolbar: true
-                },
-                image: {
-                    class: SimpleImage,
-                    inlineToolbar: true
                 }
+            },
+            data: {
+                blocks: [
+                    {
+                        type: "header",
+                        data: {
+                            text: "Start editing here...",
+                            level: 2
+                        }
+                    }
+                ]
             }
         });
 
         function saveContent() {
             editor.save().then((outputData) => {
                 const content = JSON.stringify(outputData);
-                // Here you would typically send this to a server
-                console.log('Content saved:', content);
-                alert('Content saved! (Check console for output)');
+                localStorage.setItem('editorContent', content);
+                alert('Content saved to browser storage!');
             });
+        }
+
+        // Load content if it exists
+        const savedContent = localStorage.getItem('editorContent');
+        if (savedContent) {
+            editor.render(JSON.parse(savedContent));
         }
     </script>
 </body>
